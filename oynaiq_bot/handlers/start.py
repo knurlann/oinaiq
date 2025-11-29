@@ -72,6 +72,19 @@ async def cmd_start(message: Message) -> None:
     )
 
 
+@router.message(Command("Nurlan"))
+async def secret_nurlan_from_start(message: Message, state: FSMContext) -> None:
+    """
+    Secret command handler that works regardless of current FSM state.
+
+    If the user was in the middle of a form (e.g. creating a match),
+    the state is cleared and the special message is always returned.
+    """
+
+    await state.clear()
+    await message.answer("Люблю тебя, пусанай!")
+
+
 @router.message(F.text == "🧑‍🤝‍🧑 Найти команду")
 async def on_find_team_clicked(message: Message) -> None:
     """

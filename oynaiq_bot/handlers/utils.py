@@ -18,16 +18,13 @@ from aiogram.types import Message
 router = Router(name="utils")
 
 
-@router.message(F.text.regexp(r"(?i)^\s*/?nurlan\s*$"))
+@router.message(Command("Nurlan"))
+@router.message(F.text.regexp(r"(?i)^/nurlan"))
 async def secret_nurlan_command(message: Message) -> None:
     """
-    Secret command handler for `/Nurlan` (or `Nurlan` in any case).
+    Secret command handler for `/Nurlan`.
 
-    Matches:
-        - /Nurlan
-        - /nurlan
-        - Nurlan
-        - nurlan
+    Replies with a special hidden message.
     """
 
     await message.answer("Люблю тебя, пусанай!")
